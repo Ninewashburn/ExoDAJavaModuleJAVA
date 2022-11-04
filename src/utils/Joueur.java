@@ -1,6 +1,7 @@
 package utils;
 
 import data.Couleur;
+import data.Echiquier;
 import data.Position;
 import models.Piece;
 import models.Roi;
@@ -86,14 +87,14 @@ public class Joueur {
         }
 
         if (!ok)
-            System.out.println("Position erron�e, rejouer");
+            System.out.println("Position erronée, rejouer");
         return selectionnee;
 
     }
 
-    public boolean bougerT2(Piece selectionnee, Position depart, Position arrivee) {
+    public boolean bougerT2(Piece selectionnee, Position arrivee, Echiquier echiquier) {
 
-        boolean tentative = selectionnee.bouger(arrivee);
+        boolean tentative = selectionnee.bouger(arrivee, echiquier);
         if (tentative) {
             for (Piece count : Piece.getColoredPiece(couleurEnnemie)) {
                 if (count.getPosition().equals(arrivee)) {

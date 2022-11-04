@@ -32,13 +32,24 @@ public class Game {
     Data data = new Data();
     private Joueur joueurActuel;
     private int numTour = 1;
-    ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
-    Echiquier echiquier;
+
+    public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
+        this.listeJoueurs = listeJoueurs;
+    }
+
+    public void setEchiquier(Echiquier echiquier) {
+        this.echiquier = echiquier;
+    }
+
+    private ArrayList<Joueur> listeJoueurs = new ArrayList<Joueur>();
+    private Echiquier echiquier;
     private Scanner entree = new Scanner(System.in);
 
     boolean over;
 
     public Game(String n1, String n2) {
+        System.out.println("Ecrivez le mot magique 'normal' pour lancer le jeu !");
+
         Joueur j1 = new Joueur(n1, Couleur.WHITE);
         Joueur j2 = new Joueur(n2, Couleur.BLACK);
 
@@ -53,6 +64,12 @@ public class Game {
     }
 
     private void initialisation() {
+
+        Data data = new Data();
+
+        for(Joueur j: listeJoueurs) {
+            data.getListJoueur().add(j.getNom());
+        }
 
         String w;
         do {
@@ -141,7 +158,6 @@ public class Game {
     }
 
     public void lancer() {
-
         while (!over) debutTour();
     }
 
@@ -217,7 +233,7 @@ public class Game {
 
             temp = false;
             arrivee = getEntree(2);
-            temp2 = joueurActuel.bougerT2(selectionnee, depart, arrivee);
+            temp2 = joueurActuel.bougerT2(selectionnee, arrivee, echiquier);
 
         }
         Case caseTemp = echiquier.getCase(depart.getX(), depart.getY());

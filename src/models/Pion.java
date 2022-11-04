@@ -1,6 +1,7 @@
 package models;
 
 import data.Couleur;
+import data.Echiquier;
 import data.Position;
 import utils.Mouvement;
 
@@ -17,9 +18,9 @@ public class Pion extends Piece implements Mouvement {
     }
 
     @Override
-    public boolean bouger(Position pos) {
+    public boolean bouger(Position pos, Echiquier echiquier) {
         // TODO Auto-generated method stub
-        boolean temp = super.bouger(pos);
+        boolean temp = super.bouger(pos, echiquier);
         if (temp)
             _1erTour = false;
         return temp;

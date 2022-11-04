@@ -1,6 +1,7 @@
 package models;
 
 import data.Couleur;
+import data.Echiquier;
 import data.Position;
 import utils.Mouvement;
 
@@ -109,7 +110,6 @@ public class Piece implements Mouvement {
                 posPrisesBlanc.addAll(count.mouvementExecutable);
             else
                 posPrisesNoir.addAll(count.mouvementExecutable);
-
         }
 
 
@@ -117,10 +117,9 @@ public class Piece implements Mouvement {
             for (Piece p : toDelete)
                 tabPiece.remove(p);
         }
-
     }
 
-    public boolean bouger(Position pos) {
+    public boolean bouger(Position pos, Echiquier echiquier) {
         boolean ok = false;
 
         for (Position count : this.mouvementExecutable) {
@@ -128,6 +127,7 @@ public class Piece implements Mouvement {
             if (pos.equals(count)) {
 
                 position = count;
+                echiquier.getCase(count.getX(), count.getY()).positionne(this);
                 ok = true;
             }
         }
